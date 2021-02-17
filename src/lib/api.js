@@ -8,22 +8,19 @@ const mapStories = {
   job: "jobs",
 };
 
-const cache = {};
-
-const get = (path, official) =>
-  cache[path] ||
-  (cache[path] = fetch(official ? `https://hacker-news.firebaseio.com/v0/${path}.json` :`https://node-hnapi.herokuapp.com/${path}`, {
-    headers: {"User-Agent": "chrome"}
-  }).then((r) => r.json()));
+const get = (path) =>
+  fetch(path, {
+    headers: { "User-Agent": "chrome" },
+  }).then((r) => r.json());
 
 export function getStory(id) {
-  return get(`item/${id}`);
+  return get(`https://node-hnapi.herokuapp.com/item/${id}`);
 }
 export function getUser(id) {
-  return get(`user/${id}`, true);
+  return get(`https://hacker-news.firebaseio.com/v0/user/${id}.json`);
 }
 export function getStories(type, page) {
   const l = mapStories[type];
   if (!l) return [];
-  return get(`${l}?page=${page}`);
+  return get(`https://node-hnapi.herokuapp.com/${l}?page=${page}`);
 }
