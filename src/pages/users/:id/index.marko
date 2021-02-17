@@ -1,0 +1,29 @@
+import { getUser } from "../../../lib/api"
+
+<app-layout>
+  <div class="user-view">
+    <await(getUser(input.params.id))>
+      <@then|user|>
+        <h1>User : ${user.id}</h1>
+        <ul class="meta">
+          <li>
+            <span class="label">Created:</span> 
+            ${user.created}
+          </li>
+          <li>
+            <span class="label">Karma:</span> 
+            ${user.karma}
+          </li>
+          <if(user.about)>
+            <li class="about">$!{user.about}</li>
+          </if>
+        </ul>
+        <p class="links">
+          <a href=`https://news.ycombinator.com/submitted?id=${user.id}`>submissions</a>
+          |
+          <a href=`https://news.ycombinator.com/threads?id=${user.id}`>comments</a>
+        </p>
+      </@then>
+    </await>
+  </div>
+</app-layout>

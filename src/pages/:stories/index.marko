@@ -1,0 +1,51 @@
+import { getStories } from "../../lib/api"
+
+static function getPage(query) {
+  if (!query || !query.includes("page")) return 1;
+  return +query.split("=")[1];
+}
+
+$ const page = getPage(input.query);
+<app-layout>
+  <div class="news-view">
+    <await(getStories(input.params.stories || "top", page))>
+      <@then|stories|>
+        <div class="news-list-nav">
+          <if(page > 1)>
+            <a
+              class="page-link"
+              href=`${input.pathname}?page=${page - 1}`
+              aria-label="Previous Page">
+              < prev
+            </a>
+          </if>
+          <else>
+            <span class="page-link disabled" aria-hidden="true">< prev</span>
+          </else>
+          <span>page ${input.page}</span>
+          <if(stories.length === 30)>
+            <a
+              class="page-link"
+              href=`${input.pathname}?page=${page + 1}`
+              aria-label="Next Page">
+              more >
+            </a>
+          </if>
+          <else>
+            <span class="page-link" aria-hidden="true">more ></span>
+          </else>
+        </div>
+        <main class="news-list">
+          <ul>
+            <for|story| of=stories>
+              <story story=story/>
+            </for>
+          </ul>
+        </main>
+      </@then>
+      <@placeholder>
+        <div class="news-list-nav">Loading...</div>
+      </@placeholder>
+    </await>
+  </div>
+</app-layout>

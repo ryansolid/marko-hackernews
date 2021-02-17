@@ -1,0 +1,36 @@
+static function pluralize(n) {
+  return n + (n === 1 ? " reply" : " replies");
+}
+
+class {
+  onCreate() {
+    this.state = {open: true};
+  }
+  toggleOpen() {
+    this.state.open = !this.state.open;
+  }
+}
+
+<li class="comment">
+  <div class="by">
+    <a href=`users/${input.comment.user}`>${input.comment.user}</a> 
+    ${input.comment.time_ago} ago
+  </div>
+  <div class="text">$!{input.comment.content}</div>
+  <if(input.comment.comments.length)>
+    <div class=`toggle ${state.open ? "open" : ""}`>
+      <a onclick("toggleOpen")>
+        ${state.open
+        ? "[-]"
+        : "[+] " + pluralize(input.comment.comments.length) + " collapsed"}
+      </a>
+    </div>
+    <if(state.open)>
+      <ul class="comment-children">
+        <for|comment| of=input.comment.comments>
+          <comment comment=comment/>
+        </for>
+      </ul>
+    </if>
+  </if>
+</li>

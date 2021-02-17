@@ -1,0 +1,32 @@
+<li class="news-item">
+  <span class="score">${input.story.points}</span>
+  <span class="title">
+    <if(input.story.url)
+    >
+      <a href=input.story.url target="_blank" rel="noreferrer">
+        ${input.story.title}
+      </a>
+      <span class="host"> ({input.story.domain})</span>
+    </if>
+    <else>
+      <a href=`item/${input.story.id}`>${input.story.title}</a>
+    </else>
+  </span>
+  <br />
+  <span class="meta">
+    <if(input.story.type !== "job")
+    >
+      by <a href=`users/${input.story.user}`>${input.story.user}</a> 
+      ${input.story.time_ago} | 
+      <a href=`stories/${input.story.id}`>
+        ${input.story.comments_count ? `${input.story.comments_count} comments` : "discuss"}
+      </a>
+    </if>
+    <else>
+      <a href=`stories/${input.story.id}`>${input.story.time_ago}</a>
+    </else>
+  </span>
+  <if(input.story.type !== "link")>
+    <span class="label"> ${input.story.type}</span>
+</if>
+</li>
