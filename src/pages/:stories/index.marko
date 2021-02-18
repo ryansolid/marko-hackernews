@@ -23,7 +23,8 @@ $ const page = getPage(input.query);
             <span class="page-link disabled" aria-hidden="true">< prev</span>
           </else>
           <span>page ${input.page}</span>
-          <if(stories.length === 30)>
+          <!-- sometimes the length isn't 30? -->
+          <if(stories.length >= 28)>
             <a
               class="page-link"
               href=`${input.pathname}?page=${page + 1}`
