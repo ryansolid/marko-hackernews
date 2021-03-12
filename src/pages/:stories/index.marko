@@ -8,7 +8,7 @@ static function getPage(query) {
 $ const page = getPage(input.query);
 <app-layout>
   <div class="news-view">
-    <await(getStories(input.params.stories || "top", page))>
+    <await(getStories(input.params.stories || "top", page)) client-reorder>
       <@then|stories|>
         <div class="news-list-nav">
           <if(page > 1)>

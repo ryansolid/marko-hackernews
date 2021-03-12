@@ -1,7 +1,7 @@
 import { getStory } from "../../../lib/api";
 
 <app-layout>
-  <await(getStory(input.params.id))>
+  <await(getStory(input.params.id)) client-reorder>
     <@then|story|>
     <div class="item-view">
       <div class="item-view-header">

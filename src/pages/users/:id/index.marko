@@ -2,7 +2,7 @@ import { getUser } from "../../../lib/api"
 
 <app-layout>
   <div class="user-view">
-    <await(getUser(input.params.id))>
+    <await(getUser(input.params.id)) client-reorder>
       <@then|user|>
         <h1>User : ${user.id}</h1>
         <ul class="meta">
