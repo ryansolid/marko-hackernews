@@ -1,0 +1,30 @@
+import { getStory } from "../../lib/api";
+
+<layout>
+  <div class="item-view">
+    <await(getStory(input.params.id))>
+      <@then|story|>
+        <div class="item-view-header">
+          <a href=story.url target="_blank">
+            <h1>${story.title}</h1>
+          </a>
+          <p class="meta">
+            ${story.points} points | by 
+            <a href=`/users/${story.user}`>${story.user}</a> 
+            ${story.time_ago} ago
+          </p>
+        </div>
+        <div class="item-view-comments">
+          <p class="item-view-comments-header">
+            ${story.comments_count
+              ? story.comments_count + " comments"
+              : "No comments yet."}
+          </p>
+          <ul class="comment-children">
+            <for|comment| of=story.comments><comment comment=comment /></for>
+          </ul>
+        </div>
+      </@then>
+    </await>
+  </div>
+</layout>

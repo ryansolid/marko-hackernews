@@ -1,8 +1,8 @@
-import { getUser } from "../../../lib/api"
+import { getUser } from "../../lib/api"
 
-<app-layout>
+<layout>
   <div class="user-view">
-    <await(getUser(input.params.id)) client-reorder>
+    <await(getUser(input.params.id))>
       <@then|user|>
         <h1>User : ${user.id}</h1>
         <ul class="meta">
@@ -26,4 +26,4 @@ import { getUser } from "../../../lib/api"
       </@then>
     </await>
   </div>
-</app-layout>
+</layout>
