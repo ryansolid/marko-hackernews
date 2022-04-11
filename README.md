@@ -28,12 +28,12 @@ Here are some example file system paths, and what their route format ultimately 
 ```bash
 # Static routes
 ./pages/index.marko => /
-./pages/story.marko => /story
-./pages/story/index.marko => /story
+./pages/stories.marko => /stories
+./pages/stories/index.marko => /stories
 
 # Dynamic routes
-./pages/story/$id.marko => /story/:id
-./pages/story.$id.marko => /story/:id
+./pages/stories/$id.marko => /stories/:id
+./pages/stories.$id.marko => /stories/:id
 ```
 
 The `input` for the page component will be an object like the following:

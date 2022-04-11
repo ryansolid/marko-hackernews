@@ -1,4 +1,4 @@
-name = "hn"
+name = "marko-hackernews"
 type = "javascript"
 workers_dev = true
 compatibility_date = "2022-01-06"

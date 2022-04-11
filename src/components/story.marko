@@ -12,13 +12,13 @@ $ const { story } = input;
   <span.meta>
     <if(story.type !== "job")>
       by
-      <a href=`/user/${story.user}`>${story.user}</a>
+      <a href=`/users/${story.user}`>${story.user}</a>
       ${` ${story.time_ago} | `}
-      <a href=`/story/${story.id}`>
+      <a href=`/stories/${story.id}`>
         ${story.comments_count ? `${story.comments_count} comments` : "discuss"}
       </a>
     </if>
-    <else><a href=`/story/${story.id}`>${story.time_ago}</a></else>
+    <else><a href=`/stories/${story.id}`>${story.time_ago}</a></else>
   </span>
   <if(story.type !== "link")>
     <span.label> ${story.type}</span>
