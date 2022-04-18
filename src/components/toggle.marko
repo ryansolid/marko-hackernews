@@ -1,15 +1,24 @@
-class {
-  onCreate() {
-    this.state = { open: true };
-  }
-  toggle() {
-    this.state.open = !this.state.open;
-  }
-}
-
-<div class=["toggle", { open: state.open }]>
-  <a onClick("toggle")>${state.open ? "[-]" : "[+] comments collapsed"}</a>
+<div class="toggle open">
+  <a onClick("toggle")/>
 </div>
-<ul.comment-children style={ display: state.open ? "auto" : "none" }>
+
+<ul.comment-children>
   <${input.renderBody}/>
 </ul>
+
+style {
+  .toggle a:before {
+    content: "[+] comments collapsed";
+  }
+  .toggle.open a:before {
+    content: "[-]";
+  }
+
+  .toggle + ul {
+    display: none;
+  }
+
+  .toggle.open + ul {
+    display: block;
+  }
+}
